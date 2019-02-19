@@ -5,14 +5,14 @@ namespace candy_market
 {
     internal class CandyStorage
     {
-        static List<Candy> _candies = new List<Candy>(); 
+        static List<Candy> _myCandy = new List<Candy>();
 
         internal IList<string> GetCandyTypes()
         {
             throw new NotImplementedException();
         }
 
-        internal void SaveNewCandy(ConsoleKey key)
+        internal Candy SaveNewCandy(Candy newCandy)
         {
             throw new NotImplementedException();
         }
