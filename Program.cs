@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace candy_market
 {
@@ -59,15 +60,33 @@ namespace candy_market
 
 		internal static void AddNewCandy(CandyStorage db)
 		{
-			var newCandy = new Candy
-			{
-				Name = "Whatchamacallit"
-			};
-            
-            // db is reference to CandyStorage.cs
-			var savedCandy = db.SaveNewCandy(newCandy);
-			Console.WriteLine($"Now you own the candy {savedCandy.Name}");
-		}
+            //var newCandy = new Candy
+            //{
+            //	Name = "Whatchamacallit"
+            //};
+            Console.WriteLine("Add your candy's name, manufacturer, category, DateReceived and flavor");
+            var addCandys = new List<Candy>
+            {
+
+                new Candy
+                {
+                    
+                    Name = Console.ReadLine(),
+                    Manufacturer = Console.ReadLine(),
+                    Category = Console.ReadLine(),
+                    // some method to pull the date
+                    DateReceived = Console.ReadLine(),
+                    Flavor = Console.ReadLine()
+                }
+            };
+            foreach (var addCandy in addCandys)
+            {
+
+                //Console.WriteLine(addCandy);
+                var savedCandy = db.SaveNewCandy(addCandy);
+                Console.WriteLine($"Now you own the candy {savedCandy.Name}");
+            }
+        }
 
 		private static void EatCandy(CandyStorage db)
 		{
