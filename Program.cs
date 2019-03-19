@@ -19,7 +19,7 @@ namespace candy_market
 		internal static CandyStorage SetupNewApp()
 		{
 			Console.Title = "Cross Confectioneries Incorporated";
-			Console.BackgroundColor = ConsoleColor.White;
+			Console.BackgroundColor = ConsoleColor.Green;
 			Console.ForegroundColor = ConsoleColor.Black;
 
 			var db = new CandyStorage();
@@ -63,7 +63,8 @@ namespace candy_market
 			{
 				Name = "Whatchamacallit"
 			};
-
+            
+            // db is reference to CandyStorage.cs
 			var savedCandy = db.SaveNewCandy(newCandy);
 			Console.WriteLine($"Now you own the candy {savedCandy.Name}");
 		}

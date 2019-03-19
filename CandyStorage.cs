@@ -10,6 +10,7 @@ namespace candy_market
         internal IList<string> GetCandyTypes()
         {
             throw new NotImplementedException();
+            
         }
 
         internal Candy SaveNewCandy(Candy newCandy)
