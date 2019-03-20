@@ -61,54 +61,69 @@ namespace candy_market
 		internal static void AddNewCandy(CandyStorage db)
 		{
             Console.WriteLine("Add your candy's name, manufacturer, category, DateReceived and flavor");
-            var random = new Random();
-            int randomNumber = random.Next();
-            var addCandys = new List<Candy>
+            var candyGood = new Candy
             {
-            new Candy
-            {
-                CandyId = 1,
-                Name = "Whatchamacallit",
-                Manufacturer = "hershey's",
-                Category = "chocolate",
-                DateReceived = "02/03/19",
-                Flavor = "chocolate"
-            },
-            new Candy
-            {
-                CandyId = 2,
-                Name = "orion",
-                Manufacturer = "Storck",
-                Category = "chocolate",
-                DateReceived = "02/03/19",
-                Flavor = "carmel"
-            },
-            
-            
-            //var addCandys = new List<Candy>
-           // {
-
-                new Candy
-                {
-                    CandyId = randomNumber,
-                    Name = Console.ReadLine(),
-                    Manufacturer = Console.ReadLine(),
-                    Category = Console.ReadLine(),
-                    // some method to pull the date
-                    DateReceived = Console.ReadLine(),
-                    Flavor = Console.ReadLine()
-                }
+                CandyId = db.ListMax(),
+                Name = Console.ReadLine(),
+                Manufacturer = Console.ReadLine(),
+                Category = Console.ReadLine(),
+                // some method to pull the date
+                DateReceived = Console.ReadLine(),
+                Flavor = Console.ReadLine()
             };
-            foreach (var addCandy in addCandys)
-            {
 
-                //Console.WriteLine(addCandy);
-                var savedCandy = db.SaveNewCandy(addCandy);
-                Console.WriteLine($"Now you own the candy {savedCandy.Name}");
-            }
+            
+            db.AddCandy(candyGood);
+            //db.PrintList();
+            //var addCandys = new List<Candy>
+            //{
+            //new Candy
+            //{
+            //    CandyId = 1,
+            //    Name = "Whatchamacallit",
+            //    Manufacturer = "hershey's",
+            //    Category = "chocolate",
+            //    DateReceived = "02/03/19",
+            //    Flavor = "chocolate"
+            //},
+            //new Candy
+            //{
+            //    CandyId = 2,
+            //    Name = "orion",
+            //    Manufacturer = "Storck",
+            //    Category = "chocolate",
+            //    DateReceived = "02/03/19",
+            //    Flavor = "carmel"
+            //},
+
+
+            //var addCandys = new List<Candy>
+            // {
+
+            //    new Candy
+            //    {
+            //        CandyId = randomNumber,
+            //        Name = Console.ReadLine(),
+            //        Manufacturer = Console.ReadLine(),
+            //        Category = Console.ReadLine(),
+            //        // some method to pull the date
+            //        DateReceived = Console.ReadLine(),
+            //        Flavor = Console.ReadLine()
+            //    }
+            //};
+            //foreach (var addCandy in addCandys)
+            //{
+
+            //    //Console.WriteLine(addCandy);
+            //    var savedCandy = db.SaveNewCandy(addCandy);
+            //    Console.WriteLine($"Now you own the candy {savedCandy.Name}");
+            //}
         }
 
-		private static void EatCandy(CandyStorage db)
+
+
+
+        private static void EatCandy(CandyStorage db)
 		{
 			throw new NotImplementedException();
 		}
