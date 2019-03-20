@@ -9,4 +9,6 @@
         public string DateReceived { get; set; }
         public int CandyId { get; set; }
     }
+
+    // Constructor
 }
