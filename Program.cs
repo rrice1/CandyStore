@@ -33,7 +33,8 @@ namespace candy_market
 			View mainMenu = new View()
 					.AddMenuOption("Did you just get some new candy? Add it here.")
 					.AddMenuOption("Do you want to eat some candy? Take it here.")
-					.AddMenuText("Press Esc to exit.");
+                    .AddMenuOption("Do you want to trade a candy? Trade it here.")
+                    .AddMenuText("Press Esc to exit.");
 			Console.Write(mainMenu.GetFullMenu());
 			var userOption = Console.ReadKey();
 			return userOption;
@@ -53,79 +54,44 @@ namespace candy_market
 					break;
 				case "2": EatCandy(db);
 					break;
-				default: return true;
+                case "3": TradeCandy(db);
+                    break;
+                default: return true;
 			}
-			return true;
-		}
+			return false; // changed this to false so app would start back at the menu
+        }
 
 		internal static void AddNewCandy(CandyStorage db)
 		{
             Console.WriteLine("Add your candy's name, manufacturer, category, DateReceived and flavor");
+            DateTime localDate = DateTime.Now;
             var candyGood = new Candy
             {
                 CandyId = db.ListMax(),
                 Name = Console.ReadLine(),
                 Manufacturer = Console.ReadLine(),
                 Category = Console.ReadLine(),
-                // some method to pull the date
-                DateReceived = Console.ReadLine(),
+                DateReceived = localDate.ToString(),
                 Flavor = Console.ReadLine()
             };
-
             
             db.AddCandy(candyGood);
-            //db.PrintList();
-            //var addCandys = new List<Candy>
-            //{
-            //new Candy
-            //{
-            //    CandyId = 1,
-            //    Name = "Whatchamacallit",
-            //    Manufacturer = "hershey's",
-            //    Category = "chocolate",
-            //    DateReceived = "02/03/19",
-            //    Flavor = "chocolate"
-            //},
-            //new Candy
-            //{
-            //    CandyId = 2,
-            //    Name = "orion",
-            //    Manufacturer = "Storck",
-            //    Category = "chocolate",
-            //    DateReceived = "02/03/19",
-            //    Flavor = "carmel"
-            //},
-
-
-            //var addCandys = new List<Candy>
-            // {
-
-            //    new Candy
-            //    {
-            //        CandyId = randomNumber,
-            //        Name = Console.ReadLine(),
-            //        Manufacturer = Console.ReadLine(),
-            //        Category = Console.ReadLine(),
-            //        // some method to pull the date
-            //        DateReceived = Console.ReadLine(),
-            //        Flavor = Console.ReadLine()
-            //    }
-            //};
-            //foreach (var addCandy in addCandys)
-            //{
-
-            //    //Console.WriteLine(addCandy);
-            //    var savedCandy = db.SaveNewCandy(addCandy);
-            //    Console.WriteLine($"Now you own the candy {savedCandy.Name}");
-            //}
+            
         }
 
-
-
-
+        // Used to call the list of current candy in list
         private static void EatCandy(CandyStorage db)
 		{
-			throw new NotImplementedException();
+            Console.WriteLine("Here is a list to choose candy to eat :");
+            db.PrintList();
+            Console.ReadLine();
+
+            
 		}
-	}
+
+        private static void TradeCandy(CandyStorage db)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
