@@ -33,7 +33,8 @@ namespace candy_market
 			View mainMenu = new View()
 					.AddMenuOption("Did you just get some new candy? Add it here.")
 					.AddMenuOption("Do you want to eat some candy? Take it here.")
-					.AddMenuText("Press Esc to exit.");
+                    .AddMenuOption("Do you want to trade a candy? Trade it here.")
+                    .AddMenuText("Press Esc to exit.");
 			Console.Write(mainMenu.GetFullMenu());
 			var userOption = Console.ReadKey();
 			return userOption;
@@ -53,7 +54,10 @@ namespace candy_market
 					break;
 				case "2": EatCandy(db);
 					break;
-				default: return true;
+                case "3":
+                    TradeCandy(db);
+                    break;
+                default: return true;
 			}
 			return true;
 		}
@@ -127,5 +131,10 @@ namespace candy_market
 		{
 			throw new NotImplementedException();
 		}
-	}
+
+        private static void TradeCandy(CandyStorage db)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
