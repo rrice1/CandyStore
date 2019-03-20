@@ -54,31 +54,29 @@ namespace candy_market
 					break;
 				case "2": EatCandy(db);
 					break;
-                case "3":
-                    TradeCandy(db);
+                case "3": TradeCandy(db);
                     break;
                 default: return true;
 			}
-			return true;
-		}
+			return false;
+        }
 
 		internal static void AddNewCandy(CandyStorage db)
 		{
             Console.WriteLine("Add your candy's name, manufacturer, category, DateReceived and flavor");
             DateTime localDate = DateTime.Now;
             var candyGood = new Candy
-            // DateTime localDate = DateTime.Now;
             {
                 CandyId = db.ListMax(),
                 Name = Console.ReadLine(),
                 Manufacturer = Console.ReadLine(),
                 Category = Console.ReadLine(),
-                // some method to pull the date
                 DateReceived = localDate.ToString(),
                 Flavor = Console.ReadLine()
             };
             
             db.AddCandy(candyGood);
+            
             //db.PrintList();
         }
 

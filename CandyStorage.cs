@@ -22,7 +22,7 @@ namespace candy_market
                 Name = "orion",
                 Manufacturer = "Storck",
                 Category = "chocolate",
-                DateReceived = "02/03/19",
+                DateReceived = "02/04/19",
                 Flavor = "carmel"
             }
         };
