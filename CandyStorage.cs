@@ -58,16 +58,16 @@ namespace candy_market
            
         }
 
+        // used to iterate over list to send the list of current candies in list
         internal void PrintList()
         {
-            foreach (var candy in _myCandy)
+            foreach (Candy candy in _myCandy)
             {
-
-                //Console.WriteLine(addCandy);
-                
-                Console.WriteLine($" {candy}");
-                Console.ReadLine();
-            }
+                var newName = candy.Name;
+                Console.WriteLine(candy.Name + ", "); 
+            };
+            
+   
         }
 
     }

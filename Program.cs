@@ -58,7 +58,7 @@ namespace candy_market
                     break;
                 default: return true;
 			}
-			return false;
+			return false; // changed this to false so app would start back at the menu
         }
 
 		internal static void AddNewCandy(CandyStorage db)
@@ -77,12 +77,16 @@ namespace candy_market
             
             db.AddCandy(candyGood);
             
-            //db.PrintList();
         }
 
+        // Used to call the list of current candy in list
         private static void EatCandy(CandyStorage db)
 		{
-			throw new NotImplementedException();
+            Console.WriteLine("Here is a list to choose candy to eat :");
+            db.PrintList();
+            Console.ReadLine();
+
+            
 		}
 
         private static void TradeCandy(CandyStorage db)
