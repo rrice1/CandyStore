@@ -60,17 +60,37 @@ namespace candy_market
 
 		internal static void AddNewCandy(CandyStorage db)
 		{
-            //var newCandy = new Candy
-            //{
-            //	Name = "Whatchamacallit"
-            //};
             Console.WriteLine("Add your candy's name, manufacturer, category, DateReceived and flavor");
+            var random = new Random();
+            int randomNumber = random.Next();
             var addCandys = new List<Candy>
             {
+            new Candy
+            {
+                CandyId = 1,
+                Name = "Whatchamacallit",
+                Manufacturer = "hershey's",
+                Category = "chocolate",
+                DateReceived = "02/03/19",
+                Flavor = "chocolate"
+            },
+            new Candy
+            {
+                CandyId = 2,
+                Name = "orion",
+                Manufacturer = "Storck",
+                Category = "chocolate",
+                DateReceived = "02/03/19",
+                Flavor = "carmel"
+            },
+            
+            
+            //var addCandys = new List<Candy>
+           // {
 
                 new Candy
                 {
-                    
+                    CandyId = randomNumber,
                     Name = Console.ReadLine(),
                     Manufacturer = Console.ReadLine(),
                     Category = Console.ReadLine(),
