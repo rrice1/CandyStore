@@ -76,7 +76,6 @@ namespace candy_market
             };
             
             db.AddCandy(candyGood);
-            
         }
 
         // Used to call the list of current candy in list
@@ -84,9 +83,16 @@ namespace candy_market
 		{
             Console.WriteLine("Here is a list to choose candy to eat :");
             db.PrintList();
+            Console.WriteLine("Choose just ONE candy by typing it in and hitting enter to EAT!");
+            var candyToEat = Console.ReadLine();
+
+            // function to add this candy to a list 
+
+            // funciton to remove it from the main list?
+
+            Console.WriteLine($"You just ate a {candyToEat}");
             Console.ReadLine();
 
-            
 		}
 
         private static void TradeCandy(CandyStorage db)
