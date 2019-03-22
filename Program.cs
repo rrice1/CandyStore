@@ -76,6 +76,7 @@ namespace candy_market
                 Category = Console.ReadLine(),
                 DateReceived = localDate.ToString(),
                 Flavor = Console.ReadLine()
+
             };
 
             db.AddCandy(candyGood);
@@ -109,22 +110,9 @@ namespace candy_market
             db.PrintList();
             Console.WriteLine("Choose just ONE candy by typing it in and hitting enter to EAT!");
             db.FindCandy();
+          
             //var candyToEat = Console.ReadLine();
-<<<<<<< HEAD
 
-
-
-            //List<string> ateCandyList = new List<string>();
-            //ateCandyList.Add(candyToEat);
-
-            //foreach (var ateCandy in ateCandyList)
-            //{
-            //    Console.WriteLine($"You just ate a {ateCandy}");
-            //}
-            //Console.ReadLine();
-        }
-
-=======
 
 
 
@@ -137,25 +125,14 @@ namespace candy_market
             //}
             //Console.ReadLine();
         }
-
->>>>>>> master
 
 
         private static void TradeCandy(CandyStorage db)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Here are cand owners you can trade with.");
+           // db.PrintOwnersList();
+            db.MatchCandyId();
         }
     }
-<<<<<<< HEAD
-}
 
-private static void TradeCandy(CandyStorage db)
-        {
-            throw new NotImplementedException();
-
-        }
-    }
 }
-=======
-}
->>>>>>> master

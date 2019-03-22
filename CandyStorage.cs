@@ -6,35 +6,6 @@ namespace candy_market
 {
     internal class CandyStorage
     {
-        public void FindCandy()
-        {
-            var candyToEat = Console.ReadLine();
-            List<string> ateCandyList = new List<string>
-           {
-               candyToEat
-           };
-            
-
-
-            //foreach (var ateCandy in ateCandyList)
-            //{
-            //    Console.WriteLine($"You just ate a {ateCandy}");
-            //}
-
-            foreach (var eatCandy in _myCandy)
-            {
-
-                if (candyToEat == eatCandy.Name)
-                {
-                    List<int> dupList = new List<int>();
-
-                    var addToNewList = eatCandy.CandyId;
-                    dupList.Add(addToNewList);
-                    // add to list
-                }
-            }
-            Console.ReadLine();
-        }
         static List<Candy> _myCandy = new List<Candy>() {
             new Candy
             {
@@ -56,6 +27,36 @@ namespace candy_market
                 Flavor = "chocolate"
             }
         };
+        static List<CandyOwners> candyOwners = new List<CandyOwners>()
+        {
+            new CandyOwners
+            {
+                Name = "Feven",
+                CandyId = 1
+            },
+            new CandyOwners
+            {
+                Name = "Robert",
+                CandyId = 2
+            },
+            new CandyOwners
+            {
+                Name = "Wayne",
+                CandyId = 3
+            }
+        };
+
+        internal void MatchCandyId() {
+            List<Candy> candyOwnerCandys = new List<Candy>();
+            var ownedCandys = (from candys in _myCandy
+                               join owner in candyOwners on candys.CandyId equals owner.CandyId
+                               select new { CandyOwner = owner.Name, CandyName = candys.Name }).ToList();
+            foreach (var ownedCandy in ownedCandys)
+            {
+                Console.WriteLine(ownedCandy);
+            }
+        }
+
 
         internal IList<string> GetCandyTypes()
         {
@@ -68,6 +69,11 @@ namespace candy_market
             _myCandy.Add(anyName);
             
 
+        }
+
+        internal void AddOwner(CandyOwners ownerName)
+        {
+            candyOwners.Add(ownerName);
         }
 
         public void FindCandy()
@@ -159,8 +165,14 @@ namespace candy_market
                 var newName = candy.Name;
                 Console.WriteLine(candy.Name + ", "); 
             };
-            
-   
+        }
+        public void PrintOwnersList()
+        {
+            foreach (CandyOwners owner in candyOwners)
+            {
+                var newOwner = owner.Name;
+                Console.WriteLine(newOwner + ", ");
+            };
         }
 
     }
