@@ -80,24 +80,38 @@ namespace candy_market
 
         // Used to call the list of current candy in list
         private static void EatCandy(CandyStorage db)
-		{
+        {
             Console.WriteLine("Here is a list to choose candy to eat :");
             db.PrintList();
             Console.WriteLine("Choose just ONE candy by typing it in and hitting enter to EAT!");
-            var candyToEat = Console.ReadLine();
+            db.FindCandy();
+            //var candyToEat = Console.ReadLine();
 
-            // function to add this candy to a list 
 
-            // funciton to remove it from the main list?
 
-            Console.WriteLine($"You just ate a {candyToEat}");
-            Console.ReadLine();
+            //List<string> ateCandyList = new List<string>();
+            //ateCandyList.Add(candyToEat);
 
-		}
+            //foreach (var ateCandy in ateCandyList)
+            //{
+            //    Console.WriteLine($"You just ate a {ateCandy}");
+            //}
+            //Console.ReadLine();
+        }
+
+
 
         private static void TradeCandy(CandyStorage db)
         {
             throw new NotImplementedException();
+        }
+    }
+}
+
+private static void TradeCandy(CandyStorage db)
+        {
+            throw new NotImplementedException();
+
         }
     }
 }
