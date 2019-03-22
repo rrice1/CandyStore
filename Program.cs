@@ -32,7 +32,8 @@ namespace candy_market
         {
             View mainMenu = new View()
                     .AddMenuOption("Did you just get some new candy? Add it here.")
-                    .AddMenuOption("Do you want to eat some candy? Take it here.")
+                    .AddMenuOption("Do you want to eat some candy? Eat it here, if you know the name.")
+                    .AddMenuOption("Not sure about the candy name but know the flavor? Come here for a wild ride")
                    .AddMenuOption("Do you want to trade a candy? Trade it here.")
                    .AddMenuText("Press Esc to exit.");
             Console.Write(mainMenu.GetFullMenu());
@@ -57,6 +58,9 @@ namespace candy_market
                     EatCandy(db);
                     break;
                 case "3":
+                    EatRandomCandy(db);
+                    break;
+                case "4":
                     TradeCandy(db);
                     break;
                 default: return true;
@@ -66,7 +70,7 @@ namespace candy_market
 
         internal static void AddNewCandy(CandyStorage db)
         {
-            Console.WriteLine("Add your candy's name, manufacturer, category, DateReceived and flavor");
+            Console.WriteLine("Add your candy's name, manufacturer, category, and flavor");
             DateTime localDate = DateTime.Now;
             var candyGood = new Candy
             {
@@ -97,7 +101,26 @@ namespace candy_market
 
         //}
 
+        private static void EatRandomCandy(CandyStorage db)
+        {
+            Console.WriteLine("Here is a list of flavors that are available:");
+            db.PrintFlavorList();
+            //Console.WriteLine("If you know the name of the candy you want to eat, type 1, if you only know the flavor, type the flavor and you will receive a random candy of that flavor");
+            Console.WriteLine("Choose one flavor by typing it in and hitting enter to eat a random candy of that flavor!");
+            db.FindRandomCandy();
+            //var candyToEat = Console.ReadLine();
 
+
+
+            //List<string> ateCandyList = new List<string>();
+            //ateCandyList.Add(candyToEat);
+
+            //foreach (var ateCandy in ateCandyList)
+            //{
+            //    Console.WriteLine($"You just ate a {ateCandy}");
+            //}
+            //Console.ReadLine();
+        }
 
 
 
@@ -107,6 +130,7 @@ namespace candy_market
         {
             Console.WriteLine("Here is a list to choose candy to eat :");
             db.PrintList();
+            //Console.WriteLine("If you know the name of the candy you want to eat, type 1, if you only know the flavor, type the flavor and you will receive a random candy of that flavor");
             Console.WriteLine("Choose just ONE candy by typing it in and hitting enter to EAT!");
             db.FindCandy();
             //var candyToEat = Console.ReadLine();
