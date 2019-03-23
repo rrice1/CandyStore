@@ -28,6 +28,8 @@ namespace candy_market
             }
         };
 
+        static List<Candy> eatenList = new List<Candy>();
+
         internal IList<string> GetCandyTypes()
         {
             throw new NotImplementedException();
@@ -39,6 +41,11 @@ namespace candy_market
             _myCandy.Add(anyName);
             
 
+        }
+
+        public void EatenList()
+        {
+            var showEatenList = new List<Candy>();
         }
 
         public void FindCandy()
@@ -74,12 +81,13 @@ namespace candy_market
                                       where Candy.CandyId == eatttThisDuplicate
                                       select Candy).SingleOrDefault();
 
+
             //var fevVar = 
 
             //var getIndex = (from Candy in _myCandy
             //                where Candy.CandyId == eatttThisDuplicate
             //                select Candy[]).ToList();
-
+            eatenList.Add(eattttThisDuplicate);
             _myCandy.Remove(eattttThisDuplicate);
 
 
@@ -132,12 +140,12 @@ namespace candy_market
 
             var eattThisDuplicate = from Candy in duplicateFlavors
                                         //where Candy.CandyId == duplicateNames.Min(Candy.CandyId)
-                                    select Candy.CandyId;
+                                    select rand.Next(Candy.CandyId);
 
-            var randomId = rand.Next(eattThisDuplicate.Min(), eattThisDuplicate.Max());
+            //var randomId = rand.Next(eattThisDuplicate.Min(), eattThisDuplicate.Max());
 
             var eattttThisDuplicate = (from Candy in duplicateFlavors
-                                       where Candy.CandyId == randomId
+                                       where Candy.CandyId == eattThisDuplicate
                                        select Candy).SingleOrDefault();
 
             _myCandy.Remove(eattttThisDuplicate);
@@ -171,6 +179,17 @@ namespace candy_market
             };
             
    
+        }
+
+        public void PrintEatenList()
+        {
+            foreach (Candy candy in eatenList)
+            {
+                var newName = candy.Name;
+                Console.WriteLine(candy.Name + ", ");
+            };
+
+
         }
 
         public void PrintFlavorList()
