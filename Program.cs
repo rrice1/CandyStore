@@ -112,10 +112,6 @@ namespace candy_market
             db.FindRandomCandy();
         }
 
-
-
-
-
         private static void EatCandy(CandyStorage db)
         {
             Console.WriteLine("Here is a list to choose candy to eat :");
@@ -125,15 +121,9 @@ namespace candy_market
 
         }
 
-
         //var candyToEat = Console.ReadLine();
-
-
-
-
         //List<string> ateCandyList = new List<string>();
         //ateCandyList.Add(candyToEat);
-
 
         private static void EatenCandyList(CandyStorage db)
         {
@@ -141,7 +131,6 @@ namespace candy_market
             db.PrintEatenList();
             Console.ReadLine();
         }
-
 
         private static void TradeCandy(CandyStorage db)
         {
@@ -172,9 +161,6 @@ namespace candy_market
                               select tradd).SingleOrDefault(); // SingleOrDefault gives that single value instead of the list
             candyOwner.Name = myName;
             candyOwner.CandyOwnerId = myId;
-
-
-
 
         }
     }
