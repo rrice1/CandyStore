@@ -10,5 +10,12 @@
         public int CandyId { get; set; }
     }
 
+    public class CandyOwners
+    {
+        public string Name { get; set; }
+        public int CandyId { get; set; }
+        public int CandyOwnerId { get; set; }
+    }
+
     // Constructor
 }
