@@ -10,10 +10,11 @@
         public int CandyId { get; set; }
     }
 
-    internal class CandyOwners
+    public class CandyOwners
     {
         public string Name { get; set; }
         public int CandyId { get; set; }
+        public int CandyOwnerId { get; set; }
     }
 
     // Constructor

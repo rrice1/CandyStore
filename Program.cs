@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace candy_market
 {
@@ -34,6 +35,8 @@ namespace candy_market
                     .AddMenuOption("Did you just get some new candy? Add it here.")
                     .AddMenuOption("Do you want to eat some candy? Take it here.")
                    .AddMenuOption("Do you want to trade a candy? Trade it here.")
+                   .AddMenuOption("Enter your name and id.")
+                   .AddMenuOption("Enter name and id of the person you want to trade from")
                    .AddMenuText("Press Esc to exit.");
             Console.Write(mainMenu.GetFullMenu());
             var userOption = Console.ReadKey();
@@ -59,6 +62,12 @@ namespace candy_market
                 case "3":
                     TradeCandy(db);
                     break;
+                case "4":
+                    NewTrade(db);
+                    break;
+                case "5":
+                    TradeFrom(db);
+                    break;
                 default: return true;
             }
             return false; // changed this to false so app would start back at the menu
@@ -66,7 +75,7 @@ namespace candy_market
 
         internal static void AddNewCandy(CandyStorage db)
         {
-            Console.WriteLine("Add your candy's name, manufacturer, category, DateReceived and flavor");
+            Console.WriteLine("Add your candy's name, manufacturer, category, DateReceived and flavor.");
             DateTime localDate = DateTime.Now;
             var candyGood = new Candy
             {
@@ -129,9 +138,37 @@ namespace candy_market
 
         private static void TradeCandy(CandyStorage db)
         {
-            Console.WriteLine("Here are cand owners you can trade with.");
+            Console.WriteLine("Here are candy owners you can trade with.");
            // db.PrintOwnersList();
             db.MatchCandyId();
+        }
+
+        public static int myId;
+        public static string myName;
+
+        private static void NewTrade(CandyStorage db)
+        {
+            Console.WriteLine("Enter your name and id");
+            myName = Console.ReadLine();
+
+            myId = int.Parse(Console.ReadLine());
+        }
+        private static void TradeFrom(CandyStorage db)
+        {
+            Console.WriteLine("Enter the owner id you want to trade from");
+            var name = Console.ReadLine();
+            Console.WriteLine("Enter the candy id you want to get");
+            var id = int.Parse(Console.ReadLine());
+            // CandyOwners candyOwners = new CandyOwners();
+            var candyOwner = (from tradd in db.candyOwners
+                                where id == tradd.CandyId
+                                select tradd).SingleOrDefault(); // SingleOrDefault gives that single value instead of the list
+            candyOwner.Name = myName;
+            candyOwner.CandyOwnerId = myId;
+
+            
+
+
         }
     }
 
