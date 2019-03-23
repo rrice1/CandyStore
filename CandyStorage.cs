@@ -94,25 +94,12 @@ namespace candy_market
             var duplicateNames = new List<Candy>();
             
             var eatThisDuplicate = new List<Candy>();
-            //var eattttThisDuplicate = new List<Candy>();
-
-
-
 
             duplicateNames = (from Candy in _myCandy
                                   where (Candy.Name == candyToEat) 
                                   select Candy).ToList();
 
-            //var duplicateID = from Candy in _myCandy
-            //                  where (Candy.Name == candyToEat)
-            //                  select Candy.CandyId;
-
-            //eatThisDuplicate = (from Candy in duplicateNames
-            //                    where Candy.CandyId == duplicateNames.Min(Candy.CandyId)
-            //                    select Candy).ToList();
-
             var eattThisDuplicate = from Candy in duplicateNames
-                                    //where Candy.CandyId == duplicateNames.Min(Candy.CandyId)
                                     select Candy.CandyId;
 
             var eatttThisDuplicate = eattThisDuplicate.Min();
@@ -121,37 +108,8 @@ namespace candy_market
                                       where Candy.CandyId == eatttThisDuplicate
                                       select Candy).SingleOrDefault();
 
-
-            //var fevVar = 
-
-            //var getIndex = (from Candy in _myCandy
-            //                where Candy.CandyId == eatttThisDuplicate
-            //                select Candy[]).ToList();
             eatenList.Add(eattttThisDuplicate);
             _myCandy.Remove(eattttThisDuplicate);
-
-
-            //foreach (var ateCandy in ateCandyList)
-            //{
-            //    Console.WriteLine($"You just ate a {ateCandy}");
-            //}
-
-            //    foreach (var eatCandy in _myCandy)
-            //    {
-
-            //        if (candyToEat == eatCandy.Name)
-            //        {
-            //            List<string> dupList = new List<string>();
-
-            //            var addToNewList = eatCandy.CandyId;
-            //            dupList.Add(addToNewList);
-            //            // add to list
-            //        }
-            //    }
-            //    Console.ReadLine();
-            //}
-
-            // method that will find the max number in the list
         }
 
         public void FindRandomCandy()
@@ -170,28 +128,21 @@ namespace candy_market
                               where (Candy.Flavor == typedFlavor)
                               select Candy).ToList();
 
-            //var duplicateID = from Candy in _myCandy
-            //                  where (Candy.Name == candyToEat)
-            //                  select Candy.CandyId;
-
-            //eatThisDuplicate = (from Candy in duplicateNames
-            //                    where Candy.CandyId == duplicateNames.Min(Candy.CandyId)
-            //                    select Candy).ToList();
-
             var eattThisDuplicate = from Candy in duplicateFlavors
                                         //where Candy.CandyId == duplicateNames.Min(Candy.CandyId)
-                                    select rand.Next(Candy.CandyId);
+                                    select rand.Next(duplicateFlavors.Count());
 
-            //var randomId = rand.Next(eattThisDuplicate.Min(), eattThisDuplicate.Max());
+            var indexOfCandyToEat = rand.Next(duplicateFlavors.Count());
 
-            var eattttThisDuplicate = (from Candy in duplicateFlavors
-                                       //where Candy.CandyId == eattThisDuplicate
-                                       select Candy).SingleOrDefault();
+            var theCandyToEat = duplicateFlavors[indexOfCandyToEat];
 
-            _myCandy.Remove(eattttThisDuplicate);
+
+            eatenList.Add(theCandyToEat);
+            _myCandy.Remove(theCandyToEat);
 
             // method that will find the max number in the list
         }
+
         internal int ListMax ()
         {
             
