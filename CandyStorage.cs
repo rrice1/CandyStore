@@ -6,7 +6,7 @@ namespace candy_market
 {
     internal class CandyStorage
     {
-        static List<Candy> _myCandy = new List<Candy>() {
+        public List<Candy> _myCandy = new List<Candy>() {
             new Candy
             {
 
@@ -27,6 +27,40 @@ namespace candy_market
                 Flavor = "chocolate"
             }
         };
+        public List<CandyOwners> candyOwners = new List<CandyOwners>()
+        {
+            new CandyOwners
+            {
+                CandyOwnerId = 12,
+                Name = "Feven",
+                CandyId = 1
+            },
+            new CandyOwners
+            {   
+                CandyOwnerId = 13,
+                Name = "Robert",
+                CandyId = 2
+            },
+            new CandyOwners
+            {
+                CandyOwnerId = 14,
+                Name = "Wayne",
+                CandyId = 3
+            }
+        };
+        public void MatchCandyId() {
+            List<Candy> candyOwnerCandys = new List<Candy>();
+            var ownedCandys = (from candys in _myCandy
+                               join owner in candyOwners on candys.CandyId equals owner.CandyId
+                               select new { CandyOwner = owner.Name,owner.CandyOwnerId, Candy = candys.Name,candys.CandyId }).ToList();
+            foreach (var ownedCandy in ownedCandys)
+            {
+                Console.WriteLine(ownedCandy);
+            }
+           // Console.WriteLine("If you want to return to the prompts press Enter");
+            Console.ReadLine();
+       }
+
 
         internal IList<string> GetCandyTypes()
         {
@@ -39,6 +73,11 @@ namespace candy_market
             _myCandy.Add(anyName);
             
 
+        }
+
+        internal void AddOwner(CandyOwners ownerName)
+        {
+            candyOwners.Add(ownerName);
         }
 
         public void FindCandy()
@@ -130,8 +169,14 @@ namespace candy_market
                 var newName = candy.Name;
                 Console.WriteLine(candy.Name + ", "); 
             };
-            
-   
+        }
+        public void PrintOwnersList()
+        {
+            foreach (CandyOwners owner in candyOwners)
+            {
+                var newOwner = owner.Name;
+                Console.WriteLine(newOwner + ", ");
+            };
         }
 
     }
