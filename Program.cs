@@ -33,10 +33,16 @@ namespace candy_market
         {
             View mainMenu = new View()
                     .AddMenuOption("Did you just get some new candy? Add it here.")
-                    .AddMenuOption("Do you want to eat some candy? Take it here.")
-                   .AddMenuOption("Do you want to trade a candy? Trade it here.")
-                   .AddMenuOption("Enter your name and id.")
-                   .AddMenuOption("Enter name and id of the person you want to trade from")
+
+                    .AddMenuOption("Do you want to eat some candy? Eat it here, if you know the name.")
+                    .AddMenuOption("Not sure about the candy name but know the flavor? Come here for a wild ride")
+                    .AddMenuOption("List of candy you have eaten")
+                    .AddMenuOption("Do you want to trade a candy? Trade it here.")
+                    .AddMenuOption("Enter your name and id.")
+                    .AddMenuOption("Enter name and id of the person you want to trade from")
+
+
+
                    .AddMenuText("Press Esc to exit.");
             Console.Write(mainMenu.GetFullMenu());
             var userOption = Console.ReadKey();
@@ -60,12 +66,18 @@ namespace candy_market
                     EatCandy(db);
                     break;
                 case "3":
-                    TradeCandy(db);
+                    EatRandomCandy(db);
                     break;
                 case "4":
-                    NewTrade(db);
+                    EatenCandyList(db);
                     break;
                 case "5":
+                    TradeCandy(db);
+                    break;
+                case "6":
+                    NewTrade(db);
+                    break;
+                case "7":
                     TradeFrom(db);
                     break;
                 default: return true;
@@ -75,7 +87,8 @@ namespace candy_market
 
         internal static void AddNewCandy(CandyStorage db)
         {
-            Console.WriteLine("Add your candy's name, manufacturer, category, DateReceived and flavor.");
+            Console.WriteLine("Add your candy's name, manufacturer, category, and flavor");
+
             DateTime localDate = DateTime.Now;
             var candyGood = new Candy
             {
@@ -91,23 +104,13 @@ namespace candy_market
             db.AddCandy(candyGood);
         }
 
-        // Used to call the list of current candy in list
-        //      private static void EatCandy(CandyStorage db)
-        //{
-        //          Console.WriteLine("Here is a list to choose candy to eat :");
-        //          db.PrintList();
-        //          Console.WriteLine("Choose just ONE candy by typing it in and hitting enter to EAT!");
-        //          Candy candyToEat = Console.ReadLine();
-
-        //          // function to add this candy to a list
-        //          // funciton to remove it from the main list?
-        //          db.EatCandy(candyToEat);
-        //          Console.WriteLine($"You just ate a {candyToEat}");
-        //          Console.ReadLine();
-
-        //}
-
-
+        private static void EatRandomCandy(CandyStorage db)
+        {
+            Console.WriteLine("Here is a list of flavors that are available:");
+            db.PrintFlavorList();
+            Console.WriteLine("Choose one flavor by typing it in and hitting enter to eat a random candy of that flavor!");
+            db.FindRandomCandy();
+        }
 
 
 
@@ -119,6 +122,9 @@ namespace candy_market
             db.PrintList();
             Console.WriteLine("Choose just ONE candy by typing it in and hitting enter to EAT!");
             db.FindCandy();
+
+        }
+
           
             //var candyToEat = Console.ReadLine();
 
@@ -128,11 +134,12 @@ namespace candy_market
             //List<string> ateCandyList = new List<string>();
             //ateCandyList.Add(candyToEat);
 
-            //foreach (var ateCandy in ateCandyList)
-            //{
-            //    Console.WriteLine($"You just ate a {ateCandy}");
-            //}
-            //Console.ReadLine();
+
+        private static void EatenCandyList(CandyStorage db)
+        {
+            Console.WriteLine("Here is your list of eaten candy:");
+            db.PrintEatenList();
+            Console.ReadLine();
         }
 
 
