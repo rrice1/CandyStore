@@ -9,22 +9,48 @@ namespace candy_market
         public List<Candy> _myCandy = new List<Candy>() {
             new Candy
             {
-
                 CandyId = 1,
-                Name = "orion",
+                Name = "Orion",
                 Manufacturer = "Storck",
-                Category = "chocolate",
+                Category = "Chocolate",
                 DateReceived = "02/04/19",
-                Flavor = "carmel"
+                Flavor = "Carmel"
             },
             new Candy
             {
                 CandyId = 2,
                 Name = "Whatchamacallit",
-                Manufacturer = "hershey's",
-                Category = "chocolate",
+                Manufacturer = "Hershey's",
+                Category = "Chocolate",
                 DateReceived = "02/03/19",
-                Flavor = "chocolate"
+                Flavor = "Chocolate"
+            },
+            new Candy
+            {
+                CandyId = 3,
+                Name = "Snickers",
+                Manufacturer = "Hershey's",
+                Category = "Chocolate",
+                DateReceived = "01/02/45",
+                Flavor = "Chocolate"
+            },
+            new Candy
+            {
+                CandyId = 4,
+                Name = "Skittles",
+                Manufacturer = "Hershey's",
+                Category = "Chocolate",
+                DateReceived = "05/03/45",
+                Flavor = "Fruit"
+            },
+            new Candy
+            {
+                CandyId = 5,
+                Name = "Werthers",
+                Manufacturer = "Storck",
+                Category = "Hard",
+                DateReceived = "05/019/75",
+                Flavor = "Caramel"
             }
         };
         public List<CandyOwners> candyOwners = new List<CandyOwners>()
@@ -62,22 +88,12 @@ namespace candy_market
             Console.ReadLine();
         }
 
-
         static List<Candy> eatenList = new List<Candy>();
-
-        internal IList<string> GetCandyTypes()
-        {
-            throw new NotImplementedException();
-
-        }
 
         internal void AddCandy(Candy anyName)
         {
             _myCandy.Add(anyName);
-
-
         }
-
 
         public void EatenList()
         {
@@ -123,8 +139,6 @@ namespace candy_market
             Random rand = new Random();
             var myRands = new List<int> { };
 
-
-
             duplicateFlavors = (from Candy in _myCandy
                                 where (Candy.Flavor == typedFlavor)
                                 select Candy).ToList();
@@ -137,31 +151,23 @@ namespace candy_market
 
             var theCandyToEat = duplicateFlavors[indexOfCandyToEat];
 
-
             eatenList.Add(theCandyToEat);
             _myCandy.Remove(theCandyToEat);
-
-            // method that will find the max number in the list
         }
 
         internal int ListMax()
         {
-
             var fun = _myCandy.Count() + 1
             ;
-
             return fun;
-
         }
 
         internal Candy SaveNewCandy(Candy newCandy)
         {
             _myCandy.Add(newCandy);
             return newCandy;
-
         }
 
-        // used to iterate over list to send the list of current candies in list
         public void PrintList()
         {
             foreach (Candy candy in _myCandy)
@@ -170,6 +176,7 @@ namespace candy_market
                 Console.WriteLine(candy.Name + ", ");
             };
         }
+
         public void PrintOwnersList()
         {
             foreach (CandyOwners owner in candyOwners)
@@ -181,13 +188,26 @@ namespace candy_market
 
         public void PrintEatenList()
         {
-            foreach (Candy candy in eatenList)
+            var lengthOfList = eatenList.Count();
+            if(lengthOfList == 0)
             {
-                var newName = candy.Name;
-                Console.WriteLine(candy.Name + ", ");
-            };
+                Console.WriteLine("WAIT IDIOT!!!  You have not eaten any candy");
+            }
+            else
+            {
+                foreach (Candy candy in eatenList)
+                {
 
 
+
+                    var newName = candy.Name;
+
+                    Console.WriteLine(candy.Name + ", ");
+
+
+                };
+            }
+            
         }
 
         public void PrintFlavorList()
@@ -197,9 +217,6 @@ namespace candy_market
                 var newName = candy.Flavor;
                 Console.WriteLine(candy.Flavor + ", ");
             };
-
-
         }
-
     }
 }
