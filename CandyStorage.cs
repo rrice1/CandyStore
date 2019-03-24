@@ -158,7 +158,7 @@ namespace candy_market
 
 
         internal int ListMax()
-
+        {
             var fun = _myCandy.Count() + 1
             ;
             return fun;
