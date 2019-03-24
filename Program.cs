@@ -21,7 +21,7 @@ namespace candy_market
         internal static CandyStorage SetupNewApp()
         {
             Console.Title = "Cross Confectioneries Incorporated";
-            Console.BackgroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.DarkRed;
             Console.ForegroundColor = ConsoleColor.Black;
 
             var db = new CandyStorage();
@@ -38,8 +38,8 @@ namespace candy_market
                     .AddMenuOption("List of candy you have eaten")
                     .AddMenuOption("Do you want to trade a candy? Trade it here.")
                     .AddMenuOption("Enter your name and id.")
-                    .AddMenuOption("Enter name and id of the person you want to trade from")
                     .AddMenuOption("Here is a list of all candies in inventory.")
+                    .AddMenuOption("Enter name and id of the person you want to trade from")
                     .AddMenuText("Press Esc to exit.");
             Console.Write(mainMenu.GetFullMenu());
             var userOption = Console.ReadKey();
@@ -107,7 +107,7 @@ namespace candy_market
             Console.WriteLine("Here is your list of current candies in inventory");
             foreach (Candy candy in db._myCandy)
             {
-                Console.WriteLine($"Candy : {candy.Name}           Flavor : {candy.Flavor}");
+                Console.WriteLine($"Candy : {candy.Name}        Flavor : {candy.Flavor}");
             }
             Console.ReadLine();
                
