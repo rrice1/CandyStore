@@ -38,8 +38,8 @@ namespace candy_market
                     .AddMenuOption("Not sure about the candy name but know the flavor? Come here for a wild ride")
                     .AddMenuOption("List of candy you have eaten")
                     .AddMenuOption("Do you want to trade a candy? Trade it here.")
-                    .AddMenuOption("Enter your name and id.")
-                    .AddMenuOption("Enter name and id of the person you want to trade from")
+                    .AddMenuOption("Are your ready to trade? Enter your information here.")
+                    .AddMenuOption("Pleade enter information of the person you want to trade from")
 
 
 
@@ -148,6 +148,7 @@ namespace candy_market
             Console.WriteLine("Here are candy owners you can trade with.");
            // db.PrintOwnersList();
             db.MatchCandyId();
+            Console.WriteLine("Hit Enter to go back to the menu!");
         }
 
         public static int myId;
@@ -155,14 +156,14 @@ namespace candy_market
 
         private static void NewTrade(CandyStorage db)
         {
-            Console.WriteLine("Enter your name and id");
+            Console.WriteLine("Enter your name");
             myName = Console.ReadLine();
-
+            Console.WriteLine("Enter your id");
             myId = int.Parse(Console.ReadLine());
         }
         private static void TradeFrom(CandyStorage db)
         {
-            Console.WriteLine("Enter the owner id you want to trade from");
+            Console.WriteLine("Enter the owner's id you want to trade from");
             var name = Console.ReadLine();
             Console.WriteLine("Enter the candy id you want to get");
             var id = int.Parse(Console.ReadLine());
