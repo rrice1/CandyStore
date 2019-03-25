@@ -37,9 +37,9 @@ namespace candy_market
                     .AddMenuOption("Do you want to eat some candy? Eat it here, if you know the name.")
                     .AddMenuOption("Not sure about the candy name but know the flavor? Come here for a wild ride")
                     .AddMenuOption("List of candy you have eaten")
-                    .AddMenuOption("Do you want to trade a candy? Trade it here.")
-                    .AddMenuOption("Enter your name and id.")
-                    .AddMenuOption("Enter name and id of the person you want to trade from")
+                    .AddMenuOption("List of people you can trade with.")
+                    .AddMenuOption("Are your ready to trade? Enter your information here.")
+                    .AddMenuOption("Pleade enter information of the person you want to trade from")
 
 
 
@@ -87,7 +87,7 @@ namespace candy_market
 
         internal static void AddNewCandy(CandyStorage db)
         {
-            Console.WriteLine("Add your candy's name, manufacturer, category, and flavor");
+            Console.WriteLine("Add your candy's name, manufacturer, category, and flavor. Add each information on a new line");
 
             DateTime localDate = DateTime.Now;
             var candyGood = new Candy
@@ -148,6 +148,7 @@ namespace candy_market
             Console.WriteLine("Here are candy owners you can trade with.");
            // db.PrintOwnersList();
             db.MatchCandyId();
+            Console.WriteLine("Hit Enter to go back to the menu!");
         }
 
         public static int myId;
@@ -155,16 +156,16 @@ namespace candy_market
 
         private static void NewTrade(CandyStorage db)
         {
-            Console.WriteLine("Enter your name and id");
+            Console.WriteLine("Enter your name and hit Enter");
             myName = Console.ReadLine();
-
+            Console.WriteLine("Enter your id and hit Enter");
             myId = int.Parse(Console.ReadLine());
         }
         private static void TradeFrom(CandyStorage db)
         {
-            Console.WriteLine("Enter the owner id you want to trade from");
+            Console.WriteLine("Enter the owner's id you want to trade from and hit Enter");
             var name = Console.ReadLine();
-            Console.WriteLine("Enter the candy id you want to get");
+            Console.WriteLine("Enter the candy id you want to get and hit Enter");
             var id = int.Parse(Console.ReadLine());
             // CandyOwners candyOwners = new CandyOwners();
             var candyOwner = (from tradd in db.candyOwners
