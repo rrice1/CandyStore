@@ -156,16 +156,16 @@ namespace candy_market
 
         private static void NewTrade(CandyStorage db)
         {
-            Console.WriteLine("Enter your name");
+            Console.WriteLine("Enter your name and hit Enter");
             myName = Console.ReadLine();
-            Console.WriteLine("Enter your id");
+            Console.WriteLine("Enter your id and hit Enter");
             myId = int.Parse(Console.ReadLine());
         }
         private static void TradeFrom(CandyStorage db)
         {
-            Console.WriteLine("Enter the owner's id you want to trade from");
+            Console.WriteLine("Enter the owner's id you want to trade from and hit Enter");
             var name = Console.ReadLine();
-            Console.WriteLine("Enter the candy id you want to get");
+            Console.WriteLine("Enter the candy id you want to get and hit Enter");
             var id = int.Parse(Console.ReadLine());
             // CandyOwners candyOwners = new CandyOwners();
             var candyOwner = (from tradd in db.candyOwners
