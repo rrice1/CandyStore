@@ -57,6 +57,7 @@ namespace candy_market
             var selection = userInput.KeyChar.ToString();
             switch (selection)
             {
+
                 case "1":
                     AddNewCandy(db);
                     break;
@@ -89,7 +90,9 @@ namespace candy_market
 
         internal static void AddNewCandy(CandyStorage db)
         {
-            Console.WriteLine("Add your candy's name, manufacturer, category, and flavor");
+
+            Console.WriteLine("Add your candy's name, manufacturer, category, and flavor. Add each information on a new line");
+
             DateTime localDate = DateTime.Now;
             var candyGood = new Candy
             {

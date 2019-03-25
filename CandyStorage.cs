@@ -110,11 +110,13 @@ namespace candy_market
             var candyToEat = Console.ReadLine();
             var duplicateNames = new List<Candy>();
 
+
             var eatThisDuplicate = new List<Candy>();
 
             duplicateNames = (from Candy in _myCandy
                               where (Candy.Name == candyToEat)
                               select Candy).ToList();
+
 
             var eattThisDuplicate = from Candy in duplicateNames
                                     select Candy.CandyId;
@@ -122,8 +124,10 @@ namespace candy_market
             var eatttThisDuplicate = eattThisDuplicate.Min();
 
             var eattttThisDuplicate = (from Candy in _myCandy
+
                                        where Candy.CandyId == eatttThisDuplicate
                                        select Candy).SingleOrDefault();
+
 
             eatenList.Add(eattttThisDuplicate);
             _myCandy.Remove(eattttThisDuplicate);
@@ -140,8 +144,10 @@ namespace candy_market
             var myRands = new List<int> { };
 
             duplicateFlavors = (from Candy in _myCandy
+
                                 where (Candy.Flavor == typedFlavor)
                                 select Candy).ToList();
+
 
             var eattThisDuplicate = from Candy in duplicateFlavors
                                         //where Candy.CandyId == duplicateNames.Min(Candy.CandyId)
@@ -149,13 +155,15 @@ namespace candy_market
 
             var indexOfCandyToEat = rand.Next(duplicateFlavors.Count());
 
+
             var theCandyToEat = duplicateFlavors[indexOfCandyToEat];
 
             eatenList.Add(theCandyToEat);
             _myCandy.Remove(theCandyToEat);
         }
 
-        internal int ListMax()
+
+        internal int ListMax ()
         {
             var fun = _myCandy.Count() + 1
             ;
