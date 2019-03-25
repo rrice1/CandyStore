@@ -14,7 +14,7 @@ namespace candy_market
                 Manufacturer = "Storck",
                 Category = "Chocolate",
                 DateReceived = "02/04/19",
-                Flavor = "Carmel"
+                Flavor = "Caramel"
             },
             new Candy
             {
