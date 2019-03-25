@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,7 +21,7 @@ namespace candy_market
         internal static CandyStorage SetupNewApp()
         {
             Console.Title = "Cross Confectioneries Incorporated";
-            Console.BackgroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.DarkRed;
             Console.ForegroundColor = ConsoleColor.Black;
 
             var db = new CandyStorage();
@@ -33,17 +33,15 @@ namespace candy_market
         {
             View mainMenu = new View()
                     .AddMenuOption("Did you just get some new candy? Add it here.")
-
                     .AddMenuOption("Do you want to eat some candy? Eat it here, if you know the name.")
                     .AddMenuOption("Not sure about the candy name but know the flavor? Come here for a wild ride")
                     .AddMenuOption("List of candy you have eaten")
-                    .AddMenuOption("List of people you can trade with.")
-                    .AddMenuOption("Are your ready to trade? Enter your information here.")
-                    .AddMenuOption("Pleade enter information of the person you want to trade from")
+                    .AddMenuOption("List of people you can trade with")
+                    .AddMenuOption("Are you ready to trade? Enter your information here.")
+                    .AddMenuOption("Please enter information of the person you want to trade from")
+                    .AddMenuOption("Here is a list of all candies in inventory.")
 
-
-
-                   .AddMenuText("Press Esc to exit.");
+                    .AddMenuText("Press Esc to exit.");
             Console.Write(mainMenu.GetFullMenu());
             var userOption = Console.ReadKey();
             return userOption;
@@ -59,6 +57,7 @@ namespace candy_market
             var selection = userInput.KeyChar.ToString();
             switch (selection)
             {
+
                 case "1":
                     AddNewCandy(db);
                     break;
@@ -80,6 +79,10 @@ namespace candy_market
                 case "7":
                     TradeFrom(db);
                     break;
+                case "8":
+                    ListOfCandy(db);
+                    break;
+
                 default: return true;
             }
             return false; // changed this to false so app would start back at the menu
@@ -87,6 +90,7 @@ namespace candy_market
 
         internal static void AddNewCandy(CandyStorage db)
         {
+
             Console.WriteLine("Add your candy's name, manufacturer, category, and flavor. Add each information on a new line");
 
             DateTime localDate = DateTime.Now;
@@ -98,10 +102,19 @@ namespace candy_market
                 Category = Console.ReadLine(),
                 DateReceived = localDate.ToString(),
                 Flavor = Console.ReadLine()
-
             };
-
             db.AddCandy(candyGood);
+        }
+
+        private static void ListOfCandy(CandyStorage db)
+        {
+            Console.WriteLine("Here is your list of current candies in inventory");
+            foreach (Candy candy in db._myCandy)
+            {
+                Console.WriteLine($"Candy : {candy.Name}        Flavor : {candy.Flavor}");
+            }
+            Console.ReadLine();
+               
         }
 
         private static void EatRandomCandy(CandyStorage db)
@@ -112,28 +125,13 @@ namespace candy_market
             db.FindRandomCandy();
         }
 
-
-
-
-
         private static void EatCandy(CandyStorage db)
         {
             Console.WriteLine("Here is a list to choose candy to eat :");
             db.PrintList();
             Console.WriteLine("Choose just ONE candy by typing it in and hitting enter to EAT!");
             db.FindCandy();
-
         }
-
-          
-            //var candyToEat = Console.ReadLine();
-
-
-
-
-            //List<string> ateCandyList = new List<string>();
-            //ateCandyList.Add(candyToEat);
-
 
         private static void EatenCandyList(CandyStorage db)
         {
@@ -142,11 +140,10 @@ namespace candy_market
             Console.ReadLine();
         }
 
-
         private static void TradeCandy(CandyStorage db)
         {
             Console.WriteLine("Here are candy owners you can trade with.");
-           // db.PrintOwnersList();
+            // db.PrintOwnersList();
             db.MatchCandyId();
             Console.WriteLine("Hit Enter to go back to the menu!");
         }
@@ -169,15 +166,10 @@ namespace candy_market
             var id = int.Parse(Console.ReadLine());
             // CandyOwners candyOwners = new CandyOwners();
             var candyOwner = (from tradd in db.candyOwners
-                                where id == tradd.CandyId
-                                select tradd).SingleOrDefault(); // SingleOrDefault gives that single value instead of the list
+                              where id == tradd.CandyId
+                              select tradd).SingleOrDefault(); // SingleOrDefault gives that single value instead of the list
             candyOwner.Name = myName;
             candyOwner.CandyOwnerId = myId;
-
-            
-
-
         }
     }
-
 }
