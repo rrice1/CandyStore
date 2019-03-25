@@ -36,7 +36,7 @@ namespace candy_market
                     .AddMenuOption("Do you want to eat some candy? Eat it here, if you know the name.")
                     .AddMenuOption("Not sure about the candy name but know the flavor? Come here for a wild ride")
                     .AddMenuOption("List of candy you have eaten")
-                    .AddMenuOption("Do you want to trade a candy? Trade it here.")
+                    .AddMenuOption("List of people you can trade with")
                     .AddMenuOption("Are you ready to trade? Enter your information here.")
                     .AddMenuOption("Please enter information of the person you want to trade from")
                     .AddMenuOption("Here is a list of all candies in inventory.")
