@@ -37,7 +37,7 @@ namespace candy_market
                     .AddMenuOption("Do you want to eat some candy? Eat it here, if you know the name.")
                     .AddMenuOption("Not sure about the candy name but know the flavor? Come here for a wild ride")
                     .AddMenuOption("List of candy you have eaten")
-                    .AddMenuOption("Do you want to trade a candy? Trade it here.")
+                    .AddMenuOption("List of people you can trade with.")
                     .AddMenuOption("Are your ready to trade? Enter your information here.")
                     .AddMenuOption("Pleade enter information of the person you want to trade from")
 
@@ -87,7 +87,7 @@ namespace candy_market
 
         internal static void AddNewCandy(CandyStorage db)
         {
-            Console.WriteLine("Add your candy's name, manufacturer, category, and flavor");
+            Console.WriteLine("Add your candy's name, manufacturer, category, and flavor. Add each information on a new line");
 
             DateTime localDate = DateTime.Now;
             var candyGood = new Candy
